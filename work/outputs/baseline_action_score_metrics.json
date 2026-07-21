@@ -1,0 +1,27 @@
+{
+  "lane": "Lane 2: Refresh / Content Opportunity Scoring",
+  "rule": "impressions_90d >= 500 AND 0 < avg_position <= 20 AND ctr < 0.5",
+  "reason_code": "low_ctr_visible_page",
+  "action": "refresh_and_review_ctr",
+  "rows": 30000,
+  "rows_firing_rule": 9759,
+  "base_rate_declining": 0.5421,
+  "precision_at_10_vs_declining_label": 0.6,
+  "precision_at_50_vs_declining_label": 0.42,
+  "signal_verdicts": {
+    "staleness": "OPPOSITE",
+    "ctr_vs_position": "CONFIRMED"
+  },
+  "inputs_used": [
+    "impressions_90d",
+    "avg_position",
+    "ctr"
+  ],
+  "inputs_excluded": [
+    "trend_direction",
+    "trend_pct",
+    "is_declining_label",
+    "product flags"
+  ],
+  "queue_path": "work/outputs/baseline_action_score.csv"
+}
