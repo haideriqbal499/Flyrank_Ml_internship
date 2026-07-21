@@ -1,0 +1,58 @@
+{
+  "lane": "Lane 2: Refresh / Content Opportunity Scoring",
+  "split": "client_holdout",
+  "random_state": 42,
+  "test_rows": 2325,
+  "test_clients": 6,
+  "base_rate_test": 0.391,
+  "features": [
+    "log_impressions_90d",
+    "log_clicks_90d",
+    "log_sessions_90d",
+    "days_with_impressions",
+    "days_with_sessions",
+    "content_age_days",
+    "days_since_last_update",
+    "ctr",
+    "avg_position",
+    "has_position",
+    "engagement_rate",
+    "scroll_rate",
+    "word_count_filled",
+    "has_word_count"
+  ],
+  "comparison": [
+    {
+      "method": "week4_ctr_gap_baseline",
+      "precision@10": 0.1,
+      "precision@50": 0.3,
+      "roc_auc": 0.5572,
+      "avg_precision": 0.4097
+    },
+    {
+      "method": "logistic_regression",
+      "precision@10": 0.6,
+      "precision@50": 0.54,
+      "roc_auc": 0.7145,
+      "avg_precision": 0.5501
+    },
+    {
+      "method": "random_forest",
+      "precision@10": 0.9,
+      "precision@50": 0.9,
+      "roc_auc": 0.7641,
+      "avg_precision": 0.6684
+    }
+  ],
+  "top_rf_features": {
+    "avg_position": 0.1566,
+    "log_impressions_90d": 0.1456,
+    "content_age_days": 0.1209,
+    "days_with_impressions": 0.108,
+    "word_count_filled": 0.0886,
+    "scroll_rate": 0.0635,
+    "log_sessions_90d": 0.0602,
+    "ctr": 0.0595
+  },
+  "claim": "Model scores are decision-support ranks on a snapshot decline proxy; not causal evidence that a refresh recovers traffic."
+}
