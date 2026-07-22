@@ -1,0 +1,336 @@
+/* Haider Iqbal — portfolio
+   Voice: direct, plain, careful. Mobile-first. */
+
+:root {
+  --ink: #14201a;
+  --muted: #3d4a42;
+  --paper: #f4f1ea;
+  --card: #fffdf8;
+  --line: #c9c2b4;
+  --accent: #0b5f45;
+  --accent-ink: #084833;
+  --focus: #c45c26;
+  --max: 42rem;
+  --wide: 58rem;
+  --tap: 44px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg,
+.work-shot {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent-ink);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--focus);
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--card);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.wrap {
+  width: min(100% - 2rem, var(--wide));
+  margin-inline: auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(244, 241, 234, 0.94);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.85rem 0;
+  min-height: var(--tap);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+  padding: 0.4rem 0;
+}
+
+.nav a:not(.brand):not(.btn) {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.55rem 0.35rem;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav a:not(.brand):not(.btn):hover {
+  color: var(--ink);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 0.7rem 1.15rem;
+  border-radius: 0.35rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  background: var(--accent-ink);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent-ink);
+  border: 2px solid var(--accent);
+}
+
+.btn-ghost:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.hero {
+  padding: 2.5rem 0 2rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.85rem, 6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  max-width: 18ch;
+}
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 36ch;
+  margin: 0 0 1.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section {
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 4vw, 1.85rem);
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.section p {
+  max-width: var(--max);
+}
+
+.work-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 1.15rem 1.2rem;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+
+.card p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.figure {
+  margin: 1.25rem 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.figure-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.figure figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+.work-shot {
+  width: 100%;
+  background: #fff;
+}
+
+.beat {
+  margin: 1.25rem 0;
+}
+
+.beat h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 2.5rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.site-footer a {
+  font-weight: 600;
+}
+
+.page-title {
+  padding: 2rem 0 0.5rem;
+}
+
+.page-title h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  max-width: 20ch;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Phone: keep the CTA on its own full-width row so it stays tappable */
+@media (max-width: 480px) {
+  .nav {
+    row-gap: 0.35rem;
+  }
+
+  .nav .btn {
+    flex: 1 1 100%;
+    order: 10;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+@media (min-width: 720px) {
+  .work-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav {
+    gap: 0.35rem 1.25rem;
+  }
+}
+
+@media (min-width: 960px) {
+  body {
+    font-size: 1.15rem;
+  }
+
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+}

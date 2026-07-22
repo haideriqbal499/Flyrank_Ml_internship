@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content refresh queue — Haider Iqbal</title>
+  <meta name="description" content="Case study: ranked content refresh queue on FlyRank starter search data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">Haider Iqbal</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a class="btn" href="../contact.html">Email me</a>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="page-title">
+      <a class="back" href="../index.html#work">← Work</a>
+      <p class="meta">Internship build · Lane 2 · starter dataset</p>
+      <h1>Content refresh opportunity queue</h1>
+    </div>
+
+    <div class="beat">
+      <h3>The problem</h3>
+      <p>Editors cannot eyeball 30,000 pages a week. Flagging “everything trending down” dumps high-impression page-one URLs next to low-demand noise. Someone still has to decide what to refresh, expand, protect, prune, or monitor — and wrong tops waste hours or miss a visible page that is sliding.</p>
+    </div>
+
+    <div class="beat">
+      <h3>What I did (and decided)</h3>
+      <p>I locked Lane 2: refresh / content opportunity scoring. Unit of analysis: one page. Output: a ranked review queue with a suggested action and short reason codes — not a black-box score alone.</p>
+      <p>I treated this as ranking / scoring. Success metric: precision@K (K = 20 and 50), because editors only open the top of the list. I kept a transparent rule baseline first, then compared simple models. On the starter run, a random forest beat the rule baseline on precision@50 (0.74 vs 0.24).</p>
+      <p>I will not claim a refresh recovers traffic, or that I am predicting Google’s algorithm. The queue is decision support. A human still verifies the page.</p>
+    </div>
+
+    <figure class="figure">
+      <div class="figure-scroll">
+        <img class="work-shot" src="../img/action_mix.svg" width="960" height="520" alt="Bar chart of suggested actions: monitor is largest, then refresh, then CTR and engagement review, with expand-and-refresh smallest.">
+      </div>
+      <figcaption>Observed action mix on the ranked queue (starter run). Crisp SVG — scales on a phone without blur.</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <div class="figure-scroll">
+        <img class="work-shot" src="../img/top_feature_importance.svg" width="960" height="520" alt="Bar chart of top model features including days with impressions, log impressions, average position, and content age.">
+      </div>
+      <figcaption>Top features from that run — signals an editor can argue with.</figcaption>
+    </figure>
+
+    <div class="beat">
+      <h3>What came of it</h3>
+      <p>A ranked action mix on 30k pages (high / medium / low confidence bands, plus actions like refresh, monitor, refresh-and-review CTR). The top of the queue surfaces high-demand pages that look like triage candidates, with reasons attached.</p>
+      <p>Next time I would replace the starter proxy label with an observed next-window decline from the warehouse, and log a hand review of the top 20.</p>
+    </div>
+
+    <p><a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Open the repo</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w05_model.ipynb">Week-5 model notebook</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="mailto:haideriqbal499@gmail.com">Email me</a> · <a href="../contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>

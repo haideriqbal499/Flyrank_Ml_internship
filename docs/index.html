@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haider Iqbal — ranking queues for content refresh</title>
+  <meta name="description" content="I rank which pages to refresh when the inventory is too big to eyeball. ML internship work on messy search data, with honest limits.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Haider Iqbal</a>
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="contact.html">Email me</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap">
+      <h1>I rank which pages to refresh when the inventory is too big to eyeball.</h1>
+      <p class="lede">Lane 2 on real FlyRank search data — ranked queue, reason codes, honest limits. For a hiring manager who needs a useful prototype, not a demo.</p>
+      <div class="hero-actions">
+        <a class="btn" href="mailto:haideriqbal499@gmail.com?subject=ML%20intern%20%2F%20junior%20role">Email me</a>
+        <a class="btn btn-ghost" href="#work">See the work</a>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <h2>Work</h2>
+        <p>Two pieces from my FlyRank ML internship. Same problem: which page should an editor look at first?</p>
+        <div class="work-grid">
+          <article class="card">
+            <p class="meta">Case · Content refresh queue</p>
+            <h3>Ranked review list for 30k pages</h3>
+            <p>Rule baseline vs learned ranking, precision@K, and what I will not claim.</p>
+            <a href="work/refresh-queue.html">Read the case</a>
+          </article>
+          <article class="card">
+            <p class="meta">Case · Frame before you model</p>
+            <h3>Decision and cost before training</h3>
+            <p>Lane choice, unit of analysis, and a proxy target that does not leak the label.</p>
+            <a href="work/frame-before-model.html">Read the case</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="wrap">
+        <h2>What I am proving</h2>
+        <p>I build ranking systems on messy search data and say what they can and cannot claim. The one action I want from you: email me to talk about an ML intern or junior role.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="mailto:haideriqbal499@gmail.com">haideriqbal499@gmail.com</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repo</a> · <a href="fix-log.md">Week 7 fix log</a></p>
+    </div>
+  </footer>
+</body>
+</html>

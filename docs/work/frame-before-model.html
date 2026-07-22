@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frame before you model — Haider Iqbal</title>
+  <meta name="description" content="Case study: framing the refresh-ranking problem before training a model.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">Haider Iqbal</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a class="btn" href="../contact.html">Email me</a>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="page-title">
+      <a class="back" href="../index.html#work">← Work</a>
+      <p class="meta">ML-02 / ML-03 · research question + task framing</p>
+      <h1>Frame the question before the model</h1>
+    </div>
+
+    <div class="beat">
+      <h3>The problem</h3>
+      <p>It is easy to “train a model” and still not help the person who has to pick this week’s pages. Without a decision, an action, and a cost of being wrong, the notebook is homework, not a prototype.</p>
+    </div>
+
+    <div class="beat">
+      <h3>What I did (and decided)</h3>
+      <p>I wrote the research question first: which pages should an SEO/content editor review first? Actor: the editor. Action: refresh, expand, protect, prune, or monitor. Cost of a wrong call: wasted editor time, or a high-visibility page that keeps sliding.</p>
+      <p>I backed the lane with numbers from the starter CSV — not vibes. In that snapshot, over half of pages trend down on impressions; among pages with at least 500 impressions / 90d, most still trend down. That is a triage problem, not a niche edge case.</p>
+      <p>Then I mapped the lane onto the ML loop before training: ranking / scoring, a proxy target for the starter, and an explicit note that trend_direction must not leak back in as a feature.</p>
+    </div>
+
+    <div class="beat">
+      <h3>What came of it</h3>
+      <p>A filled framing notebook pair that a stranger can read and know what I am building, who acts on it, and what “good” means (precision@K + a human sense-check of the top 20).</p>
+      <p><a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w01_research_question.ipynb">w01 research question</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w02_ml_task_framing.ipynb">w02 ML task framing</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="mailto:haideriqbal499@gmail.com">Email me</a> · <a href="../contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>
