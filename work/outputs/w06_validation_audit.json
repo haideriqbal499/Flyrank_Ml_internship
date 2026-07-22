@@ -1,0 +1,59 @@
+{
+  "paper_findings_questioned": [
+    {
+      "finding": "RF Precision@50 ~0.74 vs baseline ~0.24 (~3x lift)",
+      "question": "Label is snapshot trend proxy -- does P@50 support refresh-first claims?"
+    },
+    {
+      "finding": "Client-holdout presented as transfer evidence",
+      "question": "With 32 clients, how sensitive is lift to holdout membership / time split?"
+    }
+  ],
+  "before_after_split": [
+    {
+      "split": "random_row_split",
+      "n_train": 24000,
+      "n_test": 6000,
+      "base_rate_test": 0.542,
+      "precision@10": 1.0,
+      "precision@50": 0.96,
+      "roc_auc": 0.7714,
+      "avg_precision": 0.7843
+    },
+    {
+      "split": "client_holdout",
+      "n_train": 27675,
+      "n_test": 2325,
+      "base_rate_test": 0.391,
+      "precision@10": 0.9,
+      "precision@50": 0.9,
+      "roc_auc": 0.7641,
+      "avg_precision": 0.6684
+    }
+  ],
+  "gap_random_minus_client": {
+    "precision@50": 0.06,
+    "roc_auc": 0.0073
+  },
+  "leakage_attack": {
+    "honest": {
+      "precision@50": 0.9,
+      "roc_auc": 0.7641,
+      "top_feature": "avg_position",
+      "top_importance": 0.1566
+    },
+    "with_trend_pct": {
+      "precision@50": 1.0,
+      "roc_auc": 1.0,
+      "top_feature": "trend_pct",
+      "top_importance": 0.889
+    }
+  },
+  "safe_claim": "On a client-holdout of the starter snapshot (test n=2,325, 6 unseen clients), the random forest measured Precision@50=0.900 and ROC AUC=0.764 against the declining-trend proxy (test base rate=0.391; random-split Precision@50 was 0.960). That is a directional, decision-support ranking signal for which pages look worth reviewing first -- not causal evidence that a refresh recovers traffic, and not a claim about Google's algorithm.",
+  "claim_language": [
+    "observed",
+    "measured",
+    "directional",
+    "decision-support"
+  ]
+}
