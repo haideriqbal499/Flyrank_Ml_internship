@@ -25,6 +25,7 @@ copy its whole content, and paste it into your chat before asking for help. That
 | Write claims that hold (ML-09, ML-10, the paper) | `writing-honest-claims/SKILL.md` | — |
 | Write the research paper (ML-11, W7) | `writing-research-papers/SKILL.md` | — |
 | Deploy the paper as a page (ML-11) | `deploying-static-pages/SKILL.md` | — |
+| Portfolio / employer copy / site voice | `personal-agent/SKILL.md` | — |
 | Understand FlyRank + the problem (background) | `flyrank/flyrank-context/SKILL.md` | — |
 
 ## Reuse this on your next project

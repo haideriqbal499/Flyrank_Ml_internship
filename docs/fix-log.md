@@ -39,3 +39,7 @@ Frozen before artifact: [`_before-mobile.html`](_before-mobile.html) (not linked
 - **Mobile:** first draft spilled; fixed with fluid layout + tap targets.
 - **Accessibility:** contrast and focus were the main gaps; fixed with darker ink, green CTAs, `:focus-visible`.
 - **Speed:** no oversized photos; two SVGs + two font families with `display=swap`.
+
+## Week 7 nice-to-haves (landed)
+
+Chart thumbnail on the home work card, one-click Colab on the refresh-queue case, deeper About without internship “Lane 2” jargon.

@@ -1,0 +1,15 @@
+---
+description: FlyRank internship AI stack — skills router, one-task chats, data safety
+alwaysApply: true
+---
+
+# AI stack (this repo)
+
+1. **Router first.** Before any task, read `skills/README.md`. Load exactly **one** skill from the table. Also load `skills/flyrank/flyrank-data/SKILL.md` when the task touches the data.
+2. **One task per conversation.** Finish and verify before starting the next. Do not drag one giant chat across a whole week.
+3. **Search before inventing.** Look in the repo before assuming something is missing or unimplemented.
+4. **Intern validates.** End analysis tasks by running the notebook top to bottom. The assistant drafts; the intern checks.
+5. **Data safety.** Never print private data, client names, domains, raw URLs, raw queries, or credentials. Never commit datasets (CI blocks them).
+6. **Free tooling defaults.** Prefer the zero-budget stack in `docs/intern-free-tooling-guide.md` (Cursor/VS Code, GitHub, Colab, free assistants). Do not push paid tools as required.
+
+Portfolio / employer / site-copy work: load `skills/personal-agent/SKILL.md` instead of an ML skill.
