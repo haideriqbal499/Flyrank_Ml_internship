@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Identity kit — Haider Iqbal</title>
+  <meta name="description" content="Portfolio identity kit: fonts, palette, logo, style note.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .kit { max-width: 40rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .kit h1 { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.25rem); margin: 0 0 0.5rem; }
+    .kit .lede { color: var(--muted); margin: 0 0 2rem; }
+    .kit h2 { font-family: var(--font-display); font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+    .swatches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    .swatch { border: 1px solid var(--line); border-radius: 0.5rem; overflow: hidden; background: var(--card); }
+    .swatch .chip { height: 3.5rem; }
+    .swatch p { margin: 0; padding: 0.6rem 0.75rem; font-size: 0.95rem; }
+    .swatch code { font-size: 0.85rem; }
+    .logo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; padding: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 0.5rem; }
+    .logo-row img { display: block; }
+    .favicon-preview { width: 48px; height: 48px; }
+    .note { background: var(--card); border-left: 4px solid var(--accent); padding: 1rem 1.1rem; margin: 0; }
+    .back { display: inline-block; margin-bottom: 1.5rem; color: var(--accent-ink); }
+  </style>
+</head>
+<body>
+  <main class="kit">
+    <a class="back" href="index.html">← Home</a>
+    <h1>Identity kit</h1>
+    <p class="lede">Decide once. Every page inherits this frame so the work stays loudest.</p>
+
+    <h2>Type</h2>
+    <p><strong style="font-family: var(--font-display); font-size: 1.5rem;">Fraunces</strong> — headings<br>
+    <span style="font-family: var(--font-body);">Source Sans 3</span> — body</p>
+
+    <h2>Palette</h2>
+    <div class="swatches" aria-label="Color swatches">
+      <div class="swatch">
+        <div class="chip" style="background:#14201a"></div>
+        <p>Text<br><code>#14201a</code></p>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#f4f1ea; border-bottom:1px solid var(--line)"></div>
+        <p>Background<br><code>#f4f1ea</code></p>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#0b5f45"></div>
+        <p>Accent<br><code>#0b5f45</code></p>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#fffdf8; border-bottom:1px solid var(--line)"></div>
+        <p>Cards<br><code>#fffdf8</code></p>
+      </div>
+    </div>
+
+    <h2>Logo / favicon</h2>
+    <div class="logo-row">
+      <img src="img/logo.svg" width="280" height="50" alt="Haider Iqbal wordmark">
+      <img class="favicon-preview" src="favicon.svg" width="48" height="48" alt="HI favicon">
+    </div>
+
+    <h2>Style note</h2>
+    <p class="note">Fonts: Fraunces for headings, Source Sans 3 for body. Colors: text #14201a, background #f4f1ea, accent #0b5f45, cards #fffdf8.<br>
+    Mood: calm editorial frame — cream paper, one forest-green accent — so the ranked-queue proof is louder than the chrome.</p>
+  </main>
+</body>
+</html>
