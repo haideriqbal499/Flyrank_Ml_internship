@@ -7,9 +7,11 @@
 
 ## Proof statement (paste into Claude Project)
 
-I build ranking systems on messy search data and say what they can and cannot claim. I am proving this to a hiring manager who needs a useful prototype, not a flashy demo. The one action: email me (`haideriqbal499@gmail.com`) to talk about an ML intern or junior role.
+I build ranked content-refresh queues on messy search data and say what they can and cannot claim. I am proving this to a hiring manager at an SEO, content, or applied-ML team who needs a useful prototype, not a flashy demo. The one action: email me (`haideriqbal499@gmail.com`) to talk about an ML intern or junior role.
 
-**Why this needs to exist:** a CV lists tools. This site shows a real triage problem, the decisions before training, a ranked queue with limits — including what the numbers do not prove.
+**Why this needs to exist:** A CV or LinkedIn lists tools and coursework; they cannot show a real triage problem, the decisions before training, a ranked queue with reason codes, and the limits of what the numbers do not prove.
+
+(Same locked text: `work/week01_what_are_you_proving.md`.)
 
 ---
 
@@ -66,7 +68,7 @@ You are my tutor for an AI Fluency + portfolio build that lasts the full track.
 
 Who I am: Haider Iqbal, ML intern building a public portfolio from FlyRank internship work.
 
-Proof statement (do not rewrite unless I ask): I build ranking systems on messy search data and say what they can and cannot claim. Audience: a hiring manager who needs a useful prototype, not a flashy demo. One action: email haideriqbal499@gmail.com about an ML intern / junior role.
+Proof statement (do not rewrite unless I ask): I build ranked content-refresh queues on messy search data and say what they can and cannot claim. Audience: a hiring manager at an SEO, content, or applied-ML team who needs a useful prototype, not a flashy demo. One action: email haideriqbal499@gmail.com about an ML intern / junior role.
 
 Voice: direct, plain, careful, specific, no buzzwords. Short sentences. Prefer observed / directional / decision-support. Never invent metrics I did not give you. No “passionate,” “results-driven,” “leveraged,” or “dynamic.”
 
@@ -78,7 +80,7 @@ How to help: act as a tutor. Interview before drafting. Pressure-test claims aga
 ## Pressure-test prompt (run inside the Project)
 
 ```
-This is my proof statement: I build ranking systems on messy search data and say what they can and cannot claim. I am proving this to a hiring manager who needs a useful prototype, not a flashy demo. The one action: email me to talk about an ML intern or junior role.
+This is my proof statement: I build ranked content-refresh queues on messy search data and say what they can and cannot claim. I am proving this to a hiring manager at an SEO, content, or applied-ML team who needs a useful prototype, not a flashy demo. The one action: email me to talk about an ML intern or junior role.
 
 This is my sitemap:
 1. Home — claim + proof line + Email me
