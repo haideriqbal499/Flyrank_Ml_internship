@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Haider Iqbal//Portfolio Next Case//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Karachi
+X-LIC-LOCATION:Asia/Karachi
+BEGIN:STANDARD
+TZOFFSETFROM:+0500
+TZOFFSETTO:+0500
+TZNAME:PKT
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:next-case-warehouse-label-2026@haideriqbal499
+DTSTAMP:20260723T112200Z
+DTSTART;TZID=Asia/Karachi:20260806T100000
+DTEND;TZID=Asia/Karachi:20260806T103000
+RRULE:FREQ=MONTHLY;BYDAY=1TH
+SUMMARY:Add warehouse-label case to portfolio
+DESCRIPTION:Named next piece: warehouse next-window decline label + top-20 hand-review log.\nSteps: work/week10_next_case_habit.md\nClaude Project: Haider portfolio — ranking queues\nShip: docs/work/<slug>.html + home card on docs/index.html + push main.
+LOCATION:https://haideriqbal499.github.io/Flyrank_Ml_internship/
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Portfolio next case — open week10_next_case_habit.md
+END:VALARM
+END:VEVENT
+END:VCALENDAR

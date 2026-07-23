@@ -76,6 +76,8 @@ How to help: act as a tutor. Interview before drafting. Pressure-test claims aga
 
 Style note: Fonts: Fraunces for headings, Source Sans 3 for body. Colors: text #14201a, background #f4f1ea, accent #0b5f45, cards #fffdf8.
 Mood: calm editorial frame — cream paper, one forest-green accent — so the ranked-queue proof is louder than the chrome.
+
+Keep-building: Next case is warehouse next-window decline label + top-20 hand-review log. When I ask for a new case, reuse the three-beat shape (problem / what I did / what came of it), match docs/work/refresh-queue.html, and keep Email me as the one action. Steps live in work/week10_next_case_habit.md.
 ```
 
 ---
