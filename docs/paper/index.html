@@ -34,14 +34,14 @@
       <p class="paper-meta">Haider Iqbal · Lane 2: Refresh / Content Opportunity Scoring · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repository</a></p>
 
       <div class="context-box">
-        <h2>Context</h2>
+        <h2>Case study · FlyRank content refresh</h2>
         <dl>
           <dt>Problem</dt>
-          <dd>Editors cannot eyeball tens of thousands of pages. Flagging “everything declining” buries high-demand URLs in noise.</dd>
+          <dd>FlyRank publishes and monitors content at inventory scale. Pages that once ranked quietly decay — and hand-written product flags still leave editors asking which URL to open first.</dd>
           <dt>Contribution</dt>
-          <dd>A transparent CTR-gap baseline, a client-holdout-validated random forest ranker, leakage checks, and a human-reviewed action playbook with reason codes.</dd>
+          <dd>A transparent CTR-gap baseline, a client-holdout-validated random forest ranker, leakage checks, and a human-reviewed action playbook with reason codes — built to beat a fixed rule, not replace editorial judgment.</dd>
           <dt>Utility</dt>
-          <dd>Decision support for which pages to open first — not auto-publishing, and not a claim that a refresh recovers traffic.</dd>
+          <dd>Decision support for which pages to review first on FlyRank-style search data — not auto-publishing, and not a claim that a refresh recovers traffic.</dd>
         </dl>
       </div>
     </header>
@@ -49,11 +49,11 @@
     <article class="paper-wrap">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p>Which content pages should an SEO or content editor review first for refresh, expansion, protection, pruning, or monitoring when the inventory is too large to scan by hand?</p>
-        <p>I work on the FlyRank ML Internship dataset: a 30,000-row anonymized starter snapshot (32 pseudonymized clients, trailing-90-day metrics) for the validated ranking results, with the gated warehouse release (~79M daily performance rows, Jan 2025–Jun 2026) used to define a public-safe data contract and a stronger future-window label path.</p>
-        <p>Method: a transparent CTR-gap rule baseline, then logistic regression and random forest trained without trend/label features, evaluated with client holdout and Precision@K (K=10, 50).</p>
-        <p>On the same client-holdout split (test n=2,325, 6 unseen clients, base rate 0.391), the random forest measured Precision@50=0.900 and ROC AUC=0.764 versus 0.300 for the CTR-gap baseline — a directional ranking lift under a snapshot decline proxy.</p>
-        <p>The output is a ranked content-action playbook with reason codes for human review, not an automated publishing system and not causal evidence that edits recover traffic.</p>
+        <p>This paper is a FlyRank content-refresh case study: when search-visible pages decay across a large inventory, which URLs should an editor review first for refresh, expansion, protection, pruning, or monitoring — instead of drowning in “everything is declining” flags?</p>
+        <p>I use the FlyRank ML Internship dataset: a 30,000-row anonymized starter snapshot (32 pseudonymized clients, trailing-90-day metrics) for the validated ranking results, plus the gated warehouse release (~79M daily performance rows, Jan 2025–Jun 2026) for a public-safe data contract and a stronger future-window label path.</p>
+        <p>Method: a transparent CTR-gap rule baseline (the honest stand-in for hand-tuned flags), then logistic regression and random forest trained without trend/label features, evaluated with client holdout and Precision@K (K=10, 50).</p>
+        <p>On the same client-holdout split (test n=2,325, 6 unseen clients, base rate 0.391), the random forest measured Precision@50=0.900 and ROC AUC=0.764 versus 0.300 for the CTR-gap baseline — a directional ranking lift under a snapshot decline proxy on the same FlyRank content problem.</p>
+        <p>The output is a ranked content-action playbook with reason codes for human review inside that workflow — not an automated publishing system and not causal evidence that edits recover traffic.</p>
       </section>
 
       <nav aria-label="Paper sections">
@@ -72,10 +72,11 @@
 
       <section id="introduction">
         <h2>Introduction / Problem statement</h2>
+        <p><strong>Case study (inside this paper, not a separate file).</strong> FlyRank builds content as infrastructure: research, write, publish into a client site, then watch search and engagement data. In that loop, pages that once ranked quietly decay — impressions and clicks slip — while inventories stay large enough that no editor can eyeball every URL.</p>
+        <p>Product systems already raise hand-written flags (health scores, quick wins, needs-attention tags). Those rules work in production, but they run out where signals tangle: demand, position, CTR, age, and engagement interact. The valuable decision is still human: <strong>out of thousands of pages, which one should someone fix first?</strong> That is the FlyRank content problem this lane studies — in public-safe, anonymized form.</p>
         <p>Imagine an editor with one afternoon and 30,000 pages. Marking every “down” trend still leaves thousands of candidates. Some are high-impression page-one URLs with a CTR gap; others are low-demand noise. Wrong tops waste hours or miss a visible page that is sliding.</p>
-        <p>This paper asks: <strong>which pages should be reviewed first</strong> for refresh, expansion, protection, pruning, or monitoring?</p>
-        <p>Unit of analysis: one content item (one page). Output: a ranked queue with a suggested action and short reason codes. A human still opens the page before any edit. Wrong-call costs: false positives burn edit capacity; false negatives leave high-demand URLs unreviewed.</p>
-        <p>Data and ML help because demand, position, age, CTR, and engagement interact — a single if-statement cannot triage the mix. The goal is decision support, not “predicting Google’s algorithm.”</p>
+        <p>This paper asks: <strong>which pages should be reviewed first</strong> for refresh, expansion, protection, pruning, or monitoring? Unit of analysis: one content item (one page). Output: a ranked queue with a suggested action and short reason codes. A human still opens the page before any edit.</p>
+        <p>Findings below (Precision@K lift over a transparent rule, reason-coded playbook, leakage traps) feed that same FlyRank decision — as directional decision-support, not “predicting Google’s algorithm,” and not proof that a refresh recovers traffic.</p>
       </section>
 
       <section id="data">
