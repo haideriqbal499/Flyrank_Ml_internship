@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking content pages for refresh review — Haider Iqbal</title>
+  <meta name="description" content="Which pages should an editor review first for content refresh? A ranked decision-support queue on FlyRank internship search data, with honest limits.">
+  <meta name="author" content="Haider Iqbal">
+  <meta name="citation_title" content="Ranking content pages for refresh review on anonymized search performance data">
+  <meta name="citation_author" content="Iqbal, Haider">
+  <meta name="citation_publication_date" content="2026-07">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="paper.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">Haider Iqbal</a>
+      <a href="../index.html#work">Work</a>
+      <a href="index.html" aria-current="page">Paper</a>
+      <a href="../about.html">About</a>
+      <a class="btn" href="../contact.html">Email me</a>
+    </div>
+  </header>
+
+  <main id="main" class="paper">
+    <header class="paper-hero paper-wrap">
+      <p class="eyebrow">Research paper · FlyRank ML Internship · July 2026</p>
+      <h1>Ranking content pages for refresh review on anonymized search performance data</h1>
+      <p class="paper-meta">Haider Iqbal · Lane 2: Refresh / Content Opportunity Scoring · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repository</a></p>
+
+      <div class="context-box">
+        <h2>Context</h2>
+        <dl>
+          <dt>Problem</dt>
+          <dd>Editors cannot eyeball tens of thousands of pages. Flagging “everything declining” buries high-demand URLs in noise.</dd>
+          <dt>Contribution</dt>
+          <dd>A transparent CTR-gap baseline, a client-holdout-validated random forest ranker, leakage checks, and a human-reviewed action playbook with reason codes.</dd>
+          <dt>Utility</dt>
+          <dd>Decision support for which pages to open first — not auto-publishing, and not a claim that a refresh recovers traffic.</dd>
+        </dl>
+      </div>
+    </header>
+
+    <article class="paper-wrap">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p>Which content pages should an SEO or content editor review first for refresh, expansion, protection, pruning, or monitoring when the inventory is too large to scan by hand?</p>
+        <p>I work on the FlyRank ML Internship dataset: a 30,000-row anonymized starter snapshot (32 pseudonymized clients, trailing-90-day metrics) for the validated ranking results, with the gated warehouse release (~79M daily performance rows, Jan 2025–Jun 2026) used to define a public-safe data contract and a stronger future-window label path.</p>
+        <p>Method: a transparent CTR-gap rule baseline, then logistic regression and random forest trained without trend/label features, evaluated with client holdout and Precision@K (K=10, 50).</p>
+        <p>On the same client-holdout split (test n=2,325, 6 unseen clients, base rate 0.391), the random forest measured Precision@50=0.900 and ROC AUC=0.764 versus 0.300 for the CTR-gap baseline — a directional ranking lift under a snapshot decline proxy.</p>
+        <p>The output is a ranked content-action playbook with reason codes for human review, not an automated publishing system and not causal evidence that edits recover traffic.</p>
+      </section>
+
+      <nav aria-label="Paper sections">
+        <h2 class="visually-hidden" style="position:absolute;left:-9999px">Contents</h2>
+        <ol class="toc">
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#data">Data</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#limitations">Limitations</a></li>
+          <li><a href="#recommendations">Ranked recommendations</a></li>
+          <li><a href="#reproducibility">Reproducibility</a></li>
+          <li><a href="#acknowledgments">Acknowledgments</a></li>
+        </ol>
+      </nav>
+
+      <section id="introduction">
+        <h2>Introduction / Problem statement</h2>
+        <p>Imagine an editor with one afternoon and 30,000 pages. Marking every “down” trend still leaves thousands of candidates. Some are high-impression page-one URLs with a CTR gap; others are low-demand noise. Wrong tops waste hours or miss a visible page that is sliding.</p>
+        <p>This paper asks: <strong>which pages should be reviewed first</strong> for refresh, expansion, protection, pruning, or monitoring?</p>
+        <p>Unit of analysis: one content item (one page). Output: a ranked queue with a suggested action and short reason codes. A human still opens the page before any edit. Wrong-call costs: false positives burn edit capacity; false negatives leave high-demand URLs unreviewed.</p>
+        <p>Data and ML help because demand, position, age, CTR, and engagement interact — a single if-statement cannot triage the mix. The goal is decision support, not “predicting Google’s algorithm.”</p>
+      </section>
+
+      <section id="data">
+        <h2>Data</h2>
+        <p><strong>Starter snapshot (validated ranking).</strong> <code>data/raw/content_refresh_anonymized.csv</code> — 30,000 rows × 44 columns, one row per pseudonymized content item, 32 clients, trailing-90-day search and engagement metrics. Declining-label rate on this slice: 0.542.</p>
+        <p><strong>Warehouse release (contract + scale path).</strong> Hugging Face gated dataset <code>FlyRank/internship-warehouse</code> (build v20260703): <code>dim_clients</code> (104), <code>dim_content</code> (~520k), <code>fact_content_daily_performance</code> (~79M rows, report_date × client × content, 2025-01-27 → 2026-06-30). Mid-panel partitions (e.g. March 2026) were used to write a public-safe data contract; the sealed final month was not used to develop label logic.</p>
+        <p><strong>Excluded from model features (and why).</strong></p>
+        <ul>
+          <li><code>trend_direction</code>, <code>trend_pct</code>, and the derived <code>is_declining_label</code> — label trap if used as inputs.</li>
+          <li><code>content_id</code> / <code>client_id</code> — grouping and splits only, never features.</li>
+          <li>Titles, URLs, domains, client names, raw queries — private / unsafe for a public paper.</li>
+          <li>GA4 metrics on rows where data are zero-filled without availability — zeros are not “no engagement.”</li>
+          <li><code>fact_content_query_90d</code> when building a mid-panel contract — its fixed end-of-panel window would misalign features.</li>
+        </ul>
+        <p>Rate columns in the starter are ×100 percentages (e.g. <code>ctr = 0.76</code> means 0.76%). <code>avg_position = 0</code> means missing position, not rank zero.</p>
+      </section>
+
+      <section id="methodology">
+        <h2>Methodology</h2>
+        <p><strong>Assumptions.</strong> Editors only open the top of a list, so Precision@K matches the job better than overall accuracy. A contemporaneous trend proxy is useful for triage practice, but it is not a sealed next-window outcome.</p>
+        <p><strong>Label (proxy).</strong> <code>is_declining_label = 1</code> when <code>trend_direction == "down"</code> on the starter snapshot. Honest limit: the label is derived inside the same window as many of the metrics — directional for ranking practice, not proof of future recovery.</p>
+        <p><strong>Features.</strong> Logged 90d impressions/clicks/sessions, days with impressions/sessions, content age, days since last update, CTR, average position (plus a has-position flag), engagement rate, scroll rate, word count with a missingness flag. No trend fields in X.</p>
+        <p><strong>Baseline.</strong> Week-4 CTR-gap rule: <code>impressions_90d ≥ 500</code> AND <code>0 &lt; avg_position ≤ 20</code> AND <code>ctr &lt; 0.5</code>, scored by <code>log1p(impressions_90d)</code> among firings — reason code <code>low_ctr_visible_page</code>. Signal audit on this snapshot: CTR-gap among visible pages <strong>CONFIRMED</strong>; deep-stale age alone <strong>OPPOSITE</strong> (so age is not used as a solo green light).</p>
+        <p><strong>Models.</strong> Logistic regression (readable linear baseline among learners) and random forest (non-linear, feature importances). Random state 42.</p>
+        <p><strong>Validation design.</strong> Client holdout (~20% of clients held out; 26 train / 6 test). Pages from the same client share templates and update habits — a random row split would flatter the model.</p>
+        <p><strong>Leakage checks.</strong> Excluding trend fields from X. A deliberate attack that adds <code>trend_pct</code> drives ROC AUC and Precision@50 to 1.0 with <code>trend_pct</code> dominating importance — proof the trap is real. Random-row vs client-holdout gap on Precision@50 was about 0.06 in the audit notebook.</p>
+      </section>
+
+      <section id="results">
+        <h2>Results</h2>
+        <p>All numbers below are on the <strong>same client-holdout split</strong> (test n=2,325; test base rate=0.391).</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th class="num">Precision@10</th>
+                <th class="num">Precision@50</th>
+                <th class="num">ROC AUC</th>
+                <th class="num">Avg precision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CTR-gap rule baseline</td>
+                <td class="num">0.10</td>
+                <td class="num">0.30</td>
+                <td class="num">0.557</td>
+                <td class="num">0.410</td>
+              </tr>
+              <tr>
+                <td>Logistic regression</td>
+                <td class="num">0.60</td>
+                <td class="num">0.54</td>
+                <td class="num">0.715</td>
+                <td class="num">0.550</td>
+              </tr>
+              <tr>
+                <td>Random forest</td>
+                <td class="num">0.90</td>
+                <td class="num">0.90</td>
+                <td class="num">0.764</td>
+                <td class="num">0.668</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="claim">Measured takeaway: on this holdout, the random forest put more true declining-proxy pages into the top 50 than the transparent CTR-gap rule (0.90 vs 0.30). That is a ranking-quality result under the proxy label — not a forecast of traffic after an edit.</p>
+
+        <figure class="figure">
+          <div class="figure-scroll">
+            <img class="work-shot" src="img/model_vs_baseline.svg" width="960" height="520" alt="Bar chart comparing Precision at 50 for CTR-gap rule, logistic regression, and random forest on client holdout.">
+          </div>
+          <figcaption>Figure 1. Precision@50 on the client-holdout test set. Random forest leads the CTR-gap rule and logistic regression on the same split.</figcaption>
+        </figure>
+
+        <figure class="figure">
+          <div class="figure-scroll">
+            <img class="work-shot" src="img/top_feature_importance.svg" width="960" height="520" alt="Bar chart of top model features including days with impressions, log impressions, average position, and content age.">
+          </div>
+          <figcaption>Figure 2. Top features from the starter research pipeline (demand / visibility style signals an editor can argue with). In the Week-5 holdout run, average position and log impressions also ranked high.</figcaption>
+        </figure>
+      </section>
+
+      <section id="limitations">
+        <h2>Limitations &amp; honest framing</h2>
+        <ul>
+          <li><strong>Proxy label.</strong> Decline is snapshot trend, not a sealed next-30-day warehouse outcome. Precision@K answers “looks like a review candidate under this proxy,” not “will recover if refreshed.”</li>
+          <li><strong>No causal design.</strong> Observational ranking cannot prove that editing a page causes traffic recovery.</li>
+          <li><strong>Starter scale for metrics.</strong> Holdout metrics are on 30k anonymized pages / 32 clients — not a benchmark on the full ~79M-row daily table.</li>
+          <li><strong>Holdout sensitivity.</strong> With six test clients, Precision@50 can move with membership; the random-split number was higher (0.96) than client holdout (0.90).</li>
+          <li><strong>Staleness.</strong> Deep-stale age alone did not track decline cleanly on this snapshot — do not automate refresh from age alone.</li>
+          <li><strong>Not Google’s algorithm.</strong> Features are portfolio search/engagement outcomes, not ranking-system internals.</li>
+        </ul>
+        <p class="claim">Safe claim language used throughout: observed, measured, directional, decision-support.</p>
+      </section>
+
+      <section id="recommendations">
+        <h2>Ranked recommendations</h2>
+        <p>The action playbook blends model probability with a transparent baseline score (<code>100 × (0.70 × model + 0.30 × normalized baseline)</code>), attaches reason codes, maps archetypes to actions, and labels confidence. Editors should open <strong>high-confidence, high-demand</strong> rows first; treat low-demand rows as monitor; never auto-publish or auto-prune from the score.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Archetype</th>
+                <th>Suggested action</th>
+                <th>Why (reason family)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Visible CTR gap</td>
+                <td><code>refresh_and_review_ctr</code></td>
+                <td>High impressions, page 1–2, low CTR</td>
+              </tr>
+              <tr>
+                <td>Engagement gap</td>
+                <td><code>refresh_and_review_engagement</code></td>
+                <td>Enough sessions, weak engagement/scroll</td>
+              </tr>
+              <tr>
+                <td>Thin visible</td>
+                <td><code>expand_and_refresh</code></td>
+                <td>Visible demand + thin word count</td>
+              </tr>
+              <tr>
+                <td>High-demand decline risk</td>
+                <td><code>refresh</code></td>
+                <td>Model / demand flags with meaningful impressions</td>
+              </tr>
+              <tr>
+                <td>Strong visible</td>
+                <td><code>protect</code></td>
+                <td>Healthy CTR/position, low model risk — do not churn</td>
+              </tr>
+              <tr>
+                <td>Low-demand noise</td>
+                <td><code>monitor</code></td>
+                <td>Little search demand — skip heavy rewrites</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>No-go (must not automate):</strong> auto-publish edits; auto-prune/redirect; claim refresh recovers traffic; feed <code>trend_*</code> as features; export client names, domains, or raw queries; age-only refresh triggers.</p>
+
+        <figure class="figure">
+          <div class="figure-scroll">
+            <img class="work-shot" src="img/action_mix.svg" width="960" height="520" alt="Bar chart of suggested actions on the ranked queue.">
+          </div>
+          <figcaption>Figure 3. Suggested action mix on the ranked playbook queue (starter run). Monitor and refresh dominate; CTR/engagement review and expand are smaller, more specific buckets.</figcaption>
+        </figure>
+
+        <figure class="figure">
+          <div class="figure-scroll">
+            <img class="work-shot" src="img/top_reason_codes.svg" width="960" height="520" alt="Bar chart of top reason codes on the ranked queue.">
+          </div>
+          <figcaption>Figure 4. Top reason codes — short tags a human can challenge before acting.</figcaption>
+        </figure>
+      </section>
+
+      <section id="reproducibility">
+        <h2>Reproducibility</h2>
+        <p>Anyone with the public repo can inspect and re-run the track:</p>
+        <ul class="links-list">
+          <li><a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repository</a></li>
+          <li><a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w04_baseline_score.ipynb">w04 baseline</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w05_model.ipynb">w05 model</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w06_validation_audit.ipynb">w06 validation</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/w07_action_playbook.ipynb">w07 playbook</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/notebooks/capstone.ipynb">capstone</a></li>
+          <li>Metric receipts: <code>work/outputs/w05_model_vs_baseline.json</code>, <code>w06_validation_audit.json</code>, <code>w07_action_playbook_metrics.json</code></li>
+          <li>Environment: <code>requirements.txt</code> · seed: <code>RANDOM_STATE = 42</code></li>
+          <li>Fresh clone: install requirements, open the notebooks under <code>work/notebooks/</code>, Runtime → Run all (Colab badges on each notebook)</li>
+        </ul>
+        <p>Queue CSVs under <code>work/outputs/</code> are regenerated locally and stay out of git by design (CI leak-guard). Metrics JSON and figures are committed.</p>
+      </section>
+
+      <section id="acknowledgments" class="ack">
+        <h2>Acknowledgments &amp; data credit</h2>
+        <p>Built on the <a href="https://flyrank.ai" target="_blank" rel="noopener noreferrer">FlyRank</a> ML Internship dataset. Crediting the data source is standard research practice. Thanks to the FlyRank internship program for the anonymized starter slice, the warehouse release, and the emphasis on honest claim language.</p>
+        <p style="color:var(--muted);font-size:0.95rem;margin-top:1.5rem">Updated July 2026 · Public-safe: no client names, domains, raw URLs, or private queries.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="mailto:haideriqbal499@gmail.com">Email me</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repo</a> · <a href="../index.html">Home</a></p>
+    </div>
+  </footer>
+</body>
+</html>

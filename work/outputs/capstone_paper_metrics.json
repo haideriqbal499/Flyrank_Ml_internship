@@ -1,0 +1,23 @@
+{
+  "paper_url": "https://haideriqbal499.github.io/Flyrank_Ml_internship/paper/",
+  "question": "Which content pages should an editor review first for refresh, expansion, protection, pruning, or monitoring?",
+  "headline_result": {
+    "split": "client_holdout",
+    "rf_precision@50": 0.9,
+    "baseline_precision@50": 0.3,
+    "test_base_rate": 0.391,
+    "rf_roc_auc": 0.7641
+  },
+  "safe_claim": "On a client-holdout of the starter snapshot (test n=2,325, 6 unseen clients), the random forest measured Precision@50=0.900 and ROC AUC=0.764 against the declining-trend proxy (test base rate=0.391; random-split Precision@50 was 0.960). That is a directional, decision-support ranking signal for which pages look worth reviewing first -- not causal evidence that a refresh recovers traffic, and not a claim about Google's algorithm.",
+  "sections": [
+    "abstract",
+    "introduction",
+    "data",
+    "methodology",
+    "results",
+    "limitations",
+    "ranked_recommendations",
+    "reproducibility",
+    "acknowledgments_flyrank_ai"
+  ]
+}

@@ -1,0 +1,164 @@
+/* Research paper page — extends portfolio voice; Distill/ARCH-inspired reading column */
+
+.paper-wrap {
+  width: min(100% - 2rem, 44rem);
+  margin-inline: auto;
+}
+
+.paper-wrap.wide {
+  width: min(100% - 2rem, 58rem);
+}
+
+.paper-hero {
+  padding: 2.25rem 0 1.5rem;
+}
+
+.paper-hero .eyebrow {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin: 0 0 0.75rem;
+}
+
+.paper-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 5.2vw, 2.55rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+  max-width: 22ch;
+}
+
+.paper-meta {
+  color: var(--muted);
+  font-size: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.context-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 1.1rem 1.2rem;
+  margin: 0 0 1.5rem;
+}
+
+.context-box h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+}
+
+.context-box dl {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.context-box dt {
+  font-weight: 700;
+  color: var(--accent-ink);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.context-box dd {
+  margin: 0.2rem 0 0;
+  color: var(--ink);
+}
+
+.paper article section {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.paper article section > h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+  margin: 0 0 0.85rem;
+  line-height: 1.2;
+}
+
+.paper p {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+}
+
+.paper ul,
+.paper ol {
+  max-width: 42rem;
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.paper li {
+  margin-bottom: 0.4rem;
+}
+
+.paper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+  margin: 0.5rem 0 1rem;
+  background: var(--card);
+}
+
+.paper th,
+.paper td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.paper th {
+  background: #efeae0;
+  font-weight: 700;
+}
+
+.paper .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.toc {
+  margin: 0 0 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.toc a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.claim {
+  border-left: 4px solid var(--accent);
+  padding: 0.65rem 0 0.65rem 1rem;
+  margin: 1rem 0 1.25rem;
+  color: var(--ink);
+  background: rgba(11, 95, 69, 0.06);
+}
+
+.links-list a {
+  font-weight: 600;
+}
+
+.ack a {
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 1rem;
+  }
+
+  .paper table {
+    min-width: 36rem;
+  }
+}
