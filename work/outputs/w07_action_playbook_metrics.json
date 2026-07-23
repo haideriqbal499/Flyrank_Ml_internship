@@ -1,0 +1,85 @@
+{
+  "lane": "Lane 2: Refresh / Content Opportunity Scoring",
+  "notebook": "work/notebooks/w07_action_playbook.ipynb",
+  "random_state": 42,
+  "split": "client_holdout_for_validation_metrics",
+  "rows_scored": 30000,
+  "test_rows": 2325,
+  "test_clients": 6,
+  "base_rate_all": 0.5421,
+  "holdout_metrics": {
+    "precision@10": 0.9,
+    "precision@50": 0.9,
+    "roc_auc": 0.7641,
+    "avg_precision": 0.6684
+  },
+  "score_formula": "100 * (0.70 * model_probability + 0.30 * normalized_baseline)",
+  "signal_verdicts_carried_forward": {
+    "staleness": "OPPOSITE",
+    "ctr_vs_position": "CONFIRMED"
+  },
+  "action_counts": {
+    "refresh": 11717,
+    "monitor": 9725,
+    "refresh_and_review_ctr": 6296,
+    "refresh_and_review_engagement": 1879,
+    "protect": 301,
+    "expand_and_refresh": 82
+  },
+  "archetype_counts": {
+    "visible_ctr_gap": 9741,
+    "low_demand_noise": 7953,
+    "high_demand_decline_risk": 4940,
+    "engagement_gap": 3415,
+    "general_review": 2860,
+    "page_one_aged": 973,
+    "thin_visible": 82,
+    "strong_visible": 36
+  },
+  "confidence_counts": {
+    "low": 15000,
+    "medium": 11540,
+    "high": 3460
+  },
+  "top_features": {
+    "avg_position": 0.1566,
+    "log_impressions_90d": 0.1456,
+    "content_age_days": 0.1209,
+    "days_with_impressions": 0.108,
+    "word_count_filled": 0.0886,
+    "scroll_rate": 0.0635,
+    "log_sessions_90d": 0.0602,
+    "ctr": 0.0595
+  },
+  "monitoring_triggers": {
+    "precision_at_50_this_run": 0.9,
+    "precision_at_50_w05_receipt": 0.9,
+    "precision_drop_abs_vs_w05": 0.0,
+    "retrain_if_precision_drop_gt": 0.1,
+    "declining_label_rate": 0.5421,
+    "retrain_if_base_rate_shift_gt": 0.1,
+    "top100_dominant_action": "refresh_and_review_ctr",
+    "top100_dominant_share": 0.63,
+    "freeze_if_top100_one_action_share_gt": 0.9,
+    "hand_review_reject_rate_alert_gt": 0.4,
+    "scheduled_retrain_days": 90
+  },
+  "exports": {
+    "queue_csv": "work/outputs/w07_action_playbook_queue.csv",
+    "metrics_json": "work/outputs/w07_action_playbook_metrics.json",
+    "figures": [
+      "work/figures/w07_action_mix.svg",
+      "work/figures/w07_archetype_action.svg",
+      "work/figures/w07_top_reason_codes.svg"
+    ]
+  },
+  "safe_claim": "On this starter snapshot, the playbook ranks pages for human refresh review using a blended RF+baseline score (client-holdout Precision@50=0.900). It is directional decision-support with reason codes \u2014 not causal evidence that a refresh recovers traffic, and not a Google-algorithm prediction.",
+  "no_go": [
+    "Do not auto-publish edits from this queue",
+    "Do not auto-prune or redirect from this queue",
+    "Do not claim refresh recovers traffic from this observational score",
+    "Do not use trend_pct/trend_direction as model features",
+    "Do not export client names, domains, raw queries, or private URLs",
+    "Do not trigger refreshes from age alone on this snapshot"
+  ]
+}
