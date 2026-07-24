@@ -1,0 +1,17 @@
+{
+  "run_id": "eval1_starter",
+  "rows": 30000,
+  "declining_label_rate": 0.542,
+  "model": "random_forest",
+  "precision@50": 0.74,
+  "baseline_rules_precision@50": 0.24,
+  "RF_ROC_AUC": 0.75,
+  "split": "client_holdout",
+  "top_features": [
+    "days_with_impressions",
+    "log_impressions_90d",
+    "avg_position",
+    "content_age_days"
+  ],
+  "product_rule": "decision support only — do not claim refresh recovers traffic or Google algorithm prediction"
+}

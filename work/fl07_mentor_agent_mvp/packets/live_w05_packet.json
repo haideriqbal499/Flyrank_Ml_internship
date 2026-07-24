@@ -1,0 +1,18 @@
+{
+  "source_file": "work\\outputs\\w05_model_vs_baseline.json",
+  "split": "client_holdout",
+  "test_rows": 2325,
+  "test_clients": 6,
+  "base_rate_test": 0.391,
+  "baseline_precision@50": 0.3,
+  "logistic_regression_precision@50": 0.54,
+  "random_forest_precision@50": 0.9,
+  "RF_ROC_AUC": 0.7641,
+  "top_rf_features": [
+    "avg_position",
+    "log_impressions_90d",
+    "content_age_days",
+    "days_with_impressions"
+  ],
+  "claim": "Model scores are decision-support ranks on a snapshot decline proxy; not causal evidence that a refresh recovers traffic."
+}

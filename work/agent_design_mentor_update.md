@@ -3,7 +3,7 @@
 **Card:** Personal AI agent — design before build  
 **Owner:** Haider Iqbal  
 **Build budget:** ~10 hours  
-**Status:** Spec only (no build yet)  
+**Status:** Spec locked · MVP built in `work/fl07_mentor_agent_mvp/` (FL-07)  
 **Related:** `work/fl_workflow_mentor_update.md` (fixed A→B→C workflow this agent upgrades)
 
 ---
