@@ -1,0 +1,6 @@
+# Static personal hub. Publish directory = this folder when the repo is linked.
+# For Netlify Drop: drag the site/ folder (this file can stay inside).
+
+[build]
+  publish = "."
+  command = "echo static-site"
