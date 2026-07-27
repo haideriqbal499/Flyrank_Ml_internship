@@ -148,7 +148,14 @@ Be honest with reviewers — these are real, not “future work” fluff.
 
 ## Demo video
 
-See [`demo_video_checklist.md`](demo_video_checklist.md). Record 3–5 min live E2E with narration; upload **unlisted** YouTube; paste the link in the portal with this README URL.
+**Video (in-repo, ~4 min, captioned walkthrough of the real E2E run):**  
+https://github.com/haideriqbal499/Flyrank_Ml_internship/blob/main/work/fl07_mentor_agent_mvp/demo/honest_mentor_update_agent_demo.mp4
+
+Raw download:  
+https://github.com/haideriqbal499/Flyrank_Ml_internship/raw/main/work/fl07_mentor_agent_mvp/demo/honest_mentor_update_agent_demo.mp4
+
+Rebuild locally: `python work/fl07_mentor_agent_mvp/demo/build_demo_video.py`  
+Checklist / narration beats: [`demo_video_checklist.md`](demo_video_checklist.md).
 
 ---
 
