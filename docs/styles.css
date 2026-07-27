@@ -316,6 +316,49 @@ button:focus-visible,
   text-decoration: none;
 }
 
+/* Contact form (Week 8 — one dynamic feature) */
+.contact-form {
+  display: grid;
+  gap: 0.5rem;
+  max-width: var(--max);
+  margin: 1.5rem 0 1rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  padding: 0.7rem 0.85rem;
+  width: 100%;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.contact-form .btn {
+  margin-top: 0.75rem;
+  cursor: pointer;
+  justify-self: start;
+}
+
+.contact-form .hp {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
 /* Phone: keep the CTA on its own full-width row so it stays tappable */
 @media (max-width: 480px) {
   .nav {

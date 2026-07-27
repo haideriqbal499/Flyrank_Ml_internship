@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Contact — Haider Iqbal</title>
-  <meta name="description" content="Email Haider to talk about an ML intern or junior role.">
+  <meta name="description" content="Send Haider a message about an ML intern or junior role.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,9 +26,32 @@
     <div class="page-title">
       <h1>Contact</h1>
     </div>
-    <p>Email me to talk about an ML intern or junior role — I can walk you through the queue and what I would not claim.</p>
-    <p><a class="btn" href="mailto:haideriqbal499@gmail.com?subject=ML%20intern%20%2F%20junior%20role">haideriqbal499@gmail.com</a></p>
-    <p><a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Open the internship repo</a></p>
+    <p>Send a short note about an ML intern or junior role — I can walk you through the queue and what I would not claim.</p>
+
+    <!--
+      ONE dynamic feature (Week 8): FormSubmit free tier.
+      Browser POSTs here → FormSubmit emails haideriqbal499@gmail.com.
+      First submit ever: confirm the activation email from FormSubmit, then retry.
+    -->
+    <form class="contact-form" action="https://formsubmit.co/haideriqbal499@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Portfolio contact — Haider Iqbal">
+      <input type="hidden" name="_next" value="https://haideriqbal499.github.io/Flyrank_Ml_internship/contact-thanks.html">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required maxlength="120" autocomplete="name">
+
+      <label for="email">Your email</label>
+      <input id="email" name="email" type="email" required maxlength="200" autocomplete="email">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required maxlength="2000" rows="6" placeholder="One sentence on the role or what you want to discuss."></textarea>
+
+      <button class="btn" type="submit">Send message</button>
+    </form>
+
+    <p class="meta">Prefer mail app: <a href="mailto:haideriqbal499@gmail.com?subject=ML%20intern%20%2F%20junior%20role">haideriqbal499@gmail.com</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repo</a></p>
   </main>
 
   <footer class="site-footer">
