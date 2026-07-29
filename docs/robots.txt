@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /_before-mobile.html
+
+Sitemap: https://haideriqbal499.github.io/Flyrank_Ml_internship/sitemap.xml

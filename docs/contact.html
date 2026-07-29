@@ -6,6 +6,16 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Contact — Haider Iqbal</title>
   <meta name="description" content="Send Haider a message about an ML intern or junior role.">
+  <link rel="canonical" href="https://haideriqbal499.github.io/Flyrank_Ml_internship/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haideriqbal499.github.io/Flyrank_Ml_internship/contact.html">
+  <meta property="og:title" content="Contact — Haider Iqbal">
+  <meta property="og:description" content="Send Haider a message about an ML intern or junior role.">
+  <meta property="og:image" content="https://haideriqbal499.github.io/Flyrank_Ml_internship/img/og-share.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact — Haider Iqbal">
+  <meta name="twitter:description" content="Send Haider a message about an ML intern or junior role.">
+  <meta name="twitter:image" content="https://haideriqbal499.github.io/Flyrank_Ml_internship/img/og-share.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -48,7 +58,7 @@
       <label for="message">Message</label>
       <textarea id="message" name="message" required maxlength="2000" rows="6" placeholder="One sentence on the role or what you want to discuss."></textarea>
 
-      <button class="btn" type="submit">Send message</button>
+      <button class="btn" type="submit" id="contact-submit">Send message</button>
     </form>
 
     <p class="meta">Prefer mail app: <a href="mailto:haideriqbal499@gmail.com?subject=ML%20intern%20%2F%20junior%20role">haideriqbal499@gmail.com</a> · <a href="https://github.com/haideriqbal499/Flyrank_Ml_internship">Repo</a></p>
@@ -59,5 +69,23 @@
       <p><a href="index.html">Home</a></p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var form = document.querySelector(".contact-form");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        var btn = document.getElementById("contact-submit");
+        if (!btn) return;
+        if (btn.dataset.busy === "1") {
+          e.preventDefault();
+          return;
+        }
+        if (!form.checkValidity()) return;
+        btn.dataset.busy = "1";
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+      });
+    })();
+  </script>
 </body>
 </html>
