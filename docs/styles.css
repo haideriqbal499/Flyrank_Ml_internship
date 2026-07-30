@@ -295,6 +295,20 @@ button:focus-visible,
   font-weight: 600;
 }
 
+.site-footer .graduate-badge {
+  margin: 0 0 1rem;
+}
+
+.site-footer .graduate-badge a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.site-footer .graduate-badge img {
+  width: 200px;
+  height: auto;
+}
+
 .page-title {
   padding: 2rem 0 0.5rem;
 }

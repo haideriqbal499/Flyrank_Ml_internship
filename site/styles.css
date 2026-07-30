@@ -156,6 +156,20 @@ h2 {
   color: var(--muted);
 }
 
+.site-footer .graduate-badge {
+  margin: 0 0 1rem;
+}
+
+.site-footer .graduate-badge a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.site-footer .graduate-badge img {
+  width: 200px;
+  height: auto;
+}
+
 .cv-block h2 {
   margin-top: 1.75rem;
 }

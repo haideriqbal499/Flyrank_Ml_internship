@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="52" viewBox="0 0 200 52" role="img" aria-labelledby="title desc">
+  <title id="title">FlyRank AI Internship graduate</title>
+  <desc id="desc">Badge linking to the FlyRank credential verification page</desc>
+  <rect x="0.5" y="0.5" width="199" height="51" rx="6" fill="#fffdf8" stroke="#0b5f45" stroke-width="1"/>
+  <rect x="8" y="10" width="32" height="32" rx="4" fill="#0b5f45"/>
+  <text x="24" y="31" text-anchor="middle" fill="#f4f1ea" font-family="Georgia, serif" font-size="14" font-weight="600">FR</text>
+  <text x="50" y="24" fill="#14201a" font-family="Georgia, serif" font-size="13" font-weight="600">FlyRank graduate</text>
+  <text x="50" y="40" fill="#3d4a42" font-family="Segoe UI, sans-serif" font-size="11">Verify credential ’</text>
+</svg>
